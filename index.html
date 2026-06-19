@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Аламан Арсен | Portfolio</title>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+<style>
+:root{
+    --bg:#0F172A;
+    --card:rgba(30,41,59,0.5);
+    --text:#F8FAFC;
+    --muted:#94A3B8;
+    --accent:#38BDF8;
+    --accent2:#0EA5E9;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+    font-family:Inter;
+    background:var(--bg);
+    color:var(--text);
+    overflow-x:hidden;
+}
+
+/* glow bg */
+body::before, body::after{
+    content:"";
+    position:fixed;
+    width:500px;height:500px;
+    background:radial-gradient(circle,var(--accent),transparent 70%);
+    opacity:.15;
+    filter:blur(80px);
+    z-index:-1;
+}
+body::before{top:-100px;right:-100px}
+body::after{bottom:-120px;left:-120px}
+
+/* NAV */
+nav{
+    position:fixed;
+    top:0;left:0;width:100%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 8%;
+    z-index:1000;
+    transition:.3s;
+}
+nav.scrolled{
+    background:rgba(15,23,42,0.7);
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid rgba(56,189,248,0.2);
+}
+
+.logo{
+    font-weight:700;
+    font-size:20px;
+    background:linear-gradient(90deg,var(--accent),var(--accent2));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.nav-links{
+    display:flex;
+    gap:20px;
+}
+
+.nav-links a{
+    color:var(--muted);
+    text-decoration:none;
+    font-size:14px;
+}
+
+.nav-links a:hover{color:var(--accent)}
+
+.btn{
+    padding:10px 16px;
+    border-radius:12px;
+    background:linear-gradient(90deg,var(--accent),var(--accent2));
+    color:black;
+    font-weight:600;
+    border:none;
+    cursor:pointer;
+    transition:.3s;
+}
+.btn:hover{transform:scale(1.05)}
+.btn:active{transform:scale(.95)}
+
+/* HERO */
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    padding:120px 8% 60px;
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+}
+
+.badge{
+    display:inline-block;
+    padding:6px 12px;
+    border:1px solid rgba(56,189,248,.3);
+    border-radius:20px;
+    color:var(--muted);
+    margin-bottom:20px;
+}
+
+h1{
+    font-size:64px;
+    font-family:Poppins;
+    background:linear-gradient(90deg,#fff,var(--accent));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.hero h3{
+    color:var(--accent);
+    margin:10px 0;
+}
+
+.hero p{color:var(--muted);line-height:1.7}
+
+.hero-buttons{
+    margin-top:20px;
+    display:flex;
+    gap:10px;
+}
+
+.btn-outline{
+    border:1px solid var(--accent);
+    background:transparent;
+    color:var(--accent);
+}
+
+.photo{
+    position:relative;
+    display:flex;
+    justify-content:center;
+}
+
+.photo img{
+    width:360px;
+    height:360px;
+    object-fit:cover;
+    border-radius:16px;
+    border:2px solid rgba(56,189,248,.3);
+}
+
+/* floating icons */
+.float{
+    position:absolute;
+    font-size:28px;
+    animation:float 3s infinite ease-in-out;
+}
+.float.top{top:-20px;right:40px}
+.float.bottom{bottom:-10px;left:40px}
+
+@keyframes float{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-10px)}
+}
+
+/* SECTION */
+section{
+    padding:100px 8%;
+}
+
+.title{
+    font-size:36px;
+    text-align:center;
+    margin-bottom:50px;
+    font-family:Poppins;
+}
+
+/* ABOUT */
+.about-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+}
+
+.card{
+    background:var(--card);
+    padding:25px;
+    border-radius:16px;
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,.08);
+    transition:.3s;
+}
+.card:hover{transform:translateY(-10px)}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-top:20px;
+}
+
+/* SKILLS */
+.skill{
+    margin-bottom:15px;
+}
+
+.bar{
+    height:10px;
+    background:#0F172A;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.fill{
+    height:100%;
+    width:0;
+    background:linear-gradient(90deg,var(--accent),var(--accent2));
+    transition:2s;
+}
+
+/* PROJECTS */
+.projects{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.project img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    border-radius:12px;
+}
+
+/* TIMELINE */
+.timeline{
+    position:relative;
+    max-width:800px;
+    margin:auto;
+}
+
+.line{
+    position:absolute;
+    width:2px;
+    background:var(--accent);
+    top:0;bottom:0;left:50%;
+}
+
+.item{
+    width:50%;
+    padding:20px;
+}
+
+.item.right{margin-left:50%}
+
+/* LANG */
+.lang{
+    display:flex;
+    gap:20px;
+}
+
+.lang .card{
+    flex:1;
+    text-align:center;
+}
+
+/* CONTACT */
+.contact{
+    text-align:center;
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:40px;
+    border-top:1px solid rgba(56,189,248,.2);
+}
+
+.top-btn{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    background:var(--card);
+    border:1px solid rgba(56,189,248,.3);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+<div class="logo">AA</div>
+
+<div class="nav-links">
+<a href="#about">Мен туралы</a>
+<a href="#skills">Дағдылар</a>
+<a href="#projects">Жобалар</a>
+<a href="#timeline">Оқу</a>
+<a href="#lang">Тілдер</a>
+<a href="#contact">Байланыс</a>
+</div>
+
+<button class="btn">Байланысу</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+<div class="hero-grid">
+
+<div>
+<div class="badge">👋 Сәлем, мен Аламан</div>
+
+<h1>Аламан Арсен</h1>
+<h3>Болашақ Frontend әзірлеуші</h3>
+
+<p>
+Студент. Python арқылы Telegram боттар жасаймын, HTML/CSS үйреніп жатырмын.
+Ағылшын тілі B2 деңгейі.
+</p>
+
+<div class="hero-buttons">
+<button class="btn">Жобаларымды көру</button>
+<button class="btn btn-outline">Байланысу</button>
+</div>
+</div>
+
+<div class="photo">
+<span class="float top">💻</span>
+<span class="float bottom">🚀</span>
+
+<img src="arsen.jpg" alt="Аламан Арсен">
+</div>
+
+</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+<div class="title">Мен туралы</div>
+
+<div class="about-grid">
+
+<div class="card">
+Мен программалау үйреніп жүрген студентпін...
+<div class="stats">
+<div class="card">5+ дағды</div>
+<div class="card">3+ жоба</div>
+<div class="card">B2 English</div>
+</div>
+</div>
+
+<div class="card">
+Python, HTML, CSS, Figma
+</div>
+
+</div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+<div class="title">Дағдыларым</div>
+
+<div class="card">
+
+<div class="skill">Python<div class="bar"><div class="fill" data="80"></div></div></div>
+<div class="skill">HTML<div class="bar"><div class="fill" data="70"></div></div></div>
+<div class="skill">CSS<div class="bar"><div class="fill" data="65"></div></div></div>
+<div class="skill">Figma<div class="bar"><div class="fill" data="60"></div></div></div>
+<div class="skill">English<div class="bar"><div class="fill" data="75"></div></div></div>
+
+</div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+<div class="title">Жобалар</div>
+
+<div class="projects">
+
+<div class="card project">
+<img src="https://picsum.photos/400/200">
+<h3>Telegram Bot</h3>
+</div>
+
+<div class="card project">
+<img src="https://picsum.photos/401/200">
+<h3>Portfolio</h3>
+</div>
+
+<div class="card project">
+<img src="https://picsum.photos/402/200">
+<h3>UI/UX</h3>
+</div>
+
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<div class="title">Байланыс</div>
+
+<div class="contact">
+<p>Email: arsen5347255@gmail.com</p>
+<p>Telegram: @alaman_arsen</p>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+Аламан Арсен • © 2026 • Made with ❤️ in Kazakhstan
+</footer>
+
+<!-- TOP BUTTON -->
+<div class="top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
+
+<script>
+// navbar scroll
+window.addEventListener("scroll",()=>{
+document.getElementById("nav").classList.toggle("scrolled",window.scrollY>50);
+});
+
+// skill animation
+const fills=document.querySelectorAll(".fill");
+const obs=new IntersectionObserver(entries=>{
+entries.forEach(e=>{
+if(e.isIntersecting){
+e.target.style.width=e.target.getAttribute("data")+"%";
+}
+});
+});
+fills.forEach(f=>obs.observe(f));
+</script>
+
+</body>
+</html>
